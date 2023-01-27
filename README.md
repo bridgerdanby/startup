@@ -9,3 +9,4 @@
 * An evolving list of games to play
 * Simple easy to understand instructions
 * Ability to publish your own game ideas
+<img src="./sketch.png">
