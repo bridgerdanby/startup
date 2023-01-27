@@ -9,5 +9,3 @@
 </p> An evolving list of games to play
 </p> Simple easy to understand instructions
 </p> Ability to publish your own game ideas
-
-
