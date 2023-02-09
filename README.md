@@ -13,3 +13,9 @@
 
 
 http://3.22.125.215/
+
+#### A few notes on things that I have learned
+* Be careful when creating a repository or I will end up with a phantom branch
+* Use git bash instead of bash on cmd prompt
+* chmod 400 <key> is the correct permission for the key
+* seems like there is a lot of code duplication in html, is there a solution to this?
