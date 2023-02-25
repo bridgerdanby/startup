@@ -32,7 +32,7 @@
                         <input class="Search" type="text" placeholder="Search.." id="searchbar">
                     </li>
                     <li class="nav-item" href="Login">
-                        <button class="btn-secondary" id="login-btn">Logout</button>
+                        <button class="btn-acccent" id="login-btn">Logout</button>
                     </li>
                 </menu>
             </nav>
@@ -40,16 +40,26 @@
 
         <main class="bg">
             <div class="profilecontainer">
-                
-            </div>
-            profile pic 
-                change
-            name 
-            email address 
-            edit button 
-            remove account button
+                <div class="form-class" id="profileform">
+                    <div>
+                        <img src="selfie.jpg" alt="profilepic" id="profilepic" />
+                    </div>
+                    <div>
+                        <input type="file" class="form-control-file" id="profilepicbtn">
+                    </div>
+                    <div>
+                        <label for="example-full-name">Full Name</label>
 
-            
+                    </div>
+                    <input type="text" class="form-control" id="full_name_input" 
+                    placeholder="Bridger Danby" readonly>
+                    <label for="example-email">email</label>
+                    <input type="email" class="form-control" id="email_input" 
+                    placeholder="foo@foobar.com" readonly>
+                    <button type="button" class="btn-accent">Edit</button>
+                    <button type="button" class="btn-accent">Delete Account</button>
+                </div>
+            </div>
         </main>
 
         <footer class="text-dark text-muted">
