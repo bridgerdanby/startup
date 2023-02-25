@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>FamilyTimeGenie</title>
+        <!-- TO DO FIND ICON -->
+
+        <link rel="stylesheet" href="main.css" />
+
+        <!-- Include bootstrap CSS framework -->
+        <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+        crossorigin="anonymous"
+        />
+    </head>
+
+    <body class="text-dark" id="header">
+        <header class="container-fluid">
+            <nav class="navbar">
+                <a class="navbar-brand" href="#">FamilyTimeGenie</a>
+                <menu class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="profile.html">My Profile</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="favorites.html">My Favorite Games</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="home.html">Find Games</a></li>
+                    <li class="nav-item">
+                        <input class="Search" type="text" placeholder="Search.." id="searchbar">
+                    </li>
+                    <li class="nav-item" href="Login">
+                        <button class="btn-secondary" id="login-btn">Logout</button>
+                    </li>
+                </menu>
+            </nav>
+        </header>
+
+        <main class="bg">
+            <div class="left-sidebar">
+                <div class="filter">Filter by:</div>
+                <div class="filter-category">Est Time
+                    <div class="filter-item">
+                        30 min
+                        <input class="form-check-input" type="checkbox" value="" id="30min" checked>
+                    </div>
+                    <div class="filter-item">
+                        45 min
+                        <input class="form-check-input" type="checkbox" value="" id="45min" checked>
+                    </div>
+                    <div class="filter-item">
+                        1 hr
+                        <input class="form-check-input" type="checkbox" value="" id="1hr" checked>
+                    </div>
+                    <div class="filter-item">
+                        2+ hr
+                        <input class="form-check-input" type="checkbox" value="" id="2+hr" checked>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="main-dashboard">
+                <div class="dashboard-head">
+                    <div class="breadcrumbs">Home > Favorites</div>
+                    
+                </div>
+
+                <div class="game-container">
+                    <div class="game">
+                        <div class="game-title"><h4>Game 1</h4></div>
+                        <div class="game-description-container">
+                            <div class="accordion">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                     data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                     Description:
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+                                     ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
+                                     ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
+                                     reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                                      sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+                                       est laborum.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="game-info">
+                                <p>Level: Easy</p>
+                                <p>Est Time: 30 min</p>
+                            </div>
+                            <div class="game-btn-container">
+                                <button type="button" class="btn btn-primary">Save</button>
+                                <button type="button" class="btn btn-primary">Play Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="text-dark text-muted">
+            <div class="container-fluid">
+                <span class="text-reset">Bridger Danby</span>
+            <a
+              class="text-reset"
+              href="https://github.com/bridgerdanby/simon"
+              >GitHub</a>
+            </div> 
+        </footer>
+    </body>
+</html>
