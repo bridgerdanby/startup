@@ -27,7 +27,8 @@ http://3.22.125.215/
 * login and logout button should change and take you to a different page
 * save games to favorites
 * edit personal information
-* Lower priority things
-** search bar
-** filters
-** play now should take you somewhere
+  
+##### Lower priority things
+* search bar
+* filters
+* play now should take you somewhere
