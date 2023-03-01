@@ -22,3 +22,12 @@ http://3.22.125.215/
 * careful with HTML bugs, if the CSS isnt showing up it could be because of an HTML typo
 * a google search with bootstrap ___ styles usually finds good examples of bootstrap tools
 * develop HTML and CSS in parallel when possible
+
+#### JavaScript to do list
+* login and logout button should change and take you to a different page
+* save games to favorites
+* edit personal information
+* Lower priority things
+** search bar
+** filters
+** play now should take you somewhere
