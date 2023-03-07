@@ -22,10 +22,13 @@ http://3.22.125.215/
 * careful with HTML bugs, if the CSS isnt showing up it could be because of an HTML typo
 * a google search with bootstrap ___ styles usually finds good examples of bootstrap tools
 * develop HTML and CSS in parallel when possible
+* build a js file for each page so it isnt as complex and can be tested incrementally
+* dont overcomplicate things, js isnt meant for super complex things and I dont have the time anyways
 
 #### JavaScript to do list
 * login and logout button should change and take you to a different page
 * save games to favorites
+* ### change save to remove
 * edit personal information
   
 ##### Lower priority things
