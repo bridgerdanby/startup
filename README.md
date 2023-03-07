@@ -28,7 +28,7 @@ http://3.22.125.215/
 #### JavaScript to do list
 * login and logout button should change and take you to a different page
 * save games to favorites
-* ### change save to remove
+* > change save to remove
 * edit personal information
   
 ##### Lower priority things
