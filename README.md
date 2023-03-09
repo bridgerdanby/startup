@@ -35,3 +35,128 @@ http://3.22.125.215/
 * search bar
 * filters
 * play now should take you somewhere
+
+##### other notes
+* Domain names - An A record is a straight mapping from a domain name to IP address. A CNAME record maps one domain name to another domain name. This acts as a domain name alias. You would use a CNAME to do things like map byu.com to the same IP address as byu.edu so that either one could be used.
+* Modern HTML contains over 100 different elements. Here is a short list of HTML elements that you will commonly see.
+
+| element   | meaning                                                                |
+| --------- | ---------------------------------------------------------------------- |
+| `html`    | The page container                                                     |
+| `head`    | Header information                                                     |
+| `title`   | Title of the page                                                      |
+| `meta`    | Metadata for the page such as character set or viewport settings       |
+| `script`  | JavaScript reference. Either a external reference, or inline           |
+| `include` | External content reference                                             |
+| `body`    | The entire content body of the page                                    |
+| `header`  | Header of the main content                                             |
+| `footer`  | Footer of the main content                                             |
+| `nav`     | Navigational inputs                                                    |
+| `main`    | Main content of the page                                               |
+| `section` | A section of the main content                                          |
+| `aside`   | Aside content from the main content                                    |
+| `div`     | A block division of content                                            |
+| `span`    | An inline span of content                                              |
+| `h<1-9>`  | Text heading. From h1, the highest level, down to h9, the lowest level |
+| `p`       | A paragraph of text                                                    |
+| `b`       | Bring attention                                                        |
+| `table`   | Table                                                                  |
+| `tr`      | Table row                                                              |
+| `th`      | Table header                                                           |
+| `td`      | Table data                                                             |
+| `ol,ul`   | Ordered or unordered list                                              |
+| `li`      | List item                                                              |
+| `a`       | Anchor the text to a hyperlink                                         |
+| `img`     | Graphical image reference                                              |
+| `dialog`  | Interactive component such as a confirmation                           |
+| `form`    | A collection of user input                                             |
+| `input`   | User input field                                                       |
+| `audio`   | Audio content                                                          |
+| `video`   | Video content                                                          |
+| `svg`     | Scalable vector graphic content                                        |
+| `iframe`  | Inline frame of another HTML page                                      |
+
+  Character	Entity
+&	&amp;
+<	&lt;
+>	&gt;
+"	&quot;
+'	&apos;
+😀	&#128512;
+  
+CSS inside to out
+  * content, padding, border, margin
+  
+objects:
+* { key: value }
+* can specify functions log: log() {...}
+* constructor is a function that returns a object
+  function Person(name) {
+  return {
+    name: name,
+    log: function () {
+      console.log('My name is ' + this.name);
+    },
+  };
+}
+
+const p = new Person('Eich');
+p.log();
+// OUTPUT: My name is Eich
+  
+class
+* explicit constructor
+* no need for function label 
+* # makes it private
+* class Employee extends Person
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+
+  log() {
+    console.log('My name is ' + this.name);
+  }
+}
+
+const p = new Person('Eich');
+p.log();
+  
+Rest:
+But JavaScript provides the rest syntax to make this easier. Think of it as a parameter that contains the rest of the parameters. To turn the last parameter of any function into a rest parameter you prefix it with three periods. You can then you can call it with any number of parameters and they are all automatically combined into an array.
+
+function hasNumber(test, ...numbers) {
+  return numbers.some((i) => i === test);
+}
+
+hasNumber(2, 1, 2, 3);
+// RETURNS: true
+  
+Spread:
+  Spread does the opposite of rest. It take an object that is iterable (e.g. array or string) and expands it into a function's parameters. Consider the following.
+
+function person(firstName, lastName) {
+  return { first: firstName, last: lastName };
+}
+
+const p = person(...['Ryan', 'Dahl']);
+console.log(p);
+// OUTPUT: {first: 'Ryan', last: 'Dahl'}
+  
+Destructuring:
+  const [b, c, ...others] = a;
+
+console.log(b, c, others);
+// OUTPUT: 1, 2, [4,5]
+  
+  const { a, b = 22 } = {};
+const [c = 44] = [];
+
+console.log(a, b, c);
+  
+await - block until promise is fullfilled
+async - must be defined at top level, makes it work with await
+  
+script things:
+  * chmod +x deploy.sh make a script executable
+  * ls -la deploy.sh list all elements, even hidden ones in log format
