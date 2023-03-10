@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>FamilyTimeGenie</title>
+        <!-- TO DO FIND ICON -->
+
+        <link rel="stylesheet" href="main.css" />
+
+        <!-- Include bootstrap CSS framework -->
+        <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+        crossorigin="anonymous"
+        />
+    </head>
+
+    <body class="text-dark" id="header">
+        <header class="container-fluid">
+            <div class="mynavbar">
+                <span>
+                    <h5 class="myBrand" href="#">FamilyTimeGenie</h5>
+                </span>
+            </div>
+        </header>
+
+        <main class="bg">
+            <div class="logincontainer">
+                <div class="form-class" id="loginform">
+                    <form class="loginform">
+                        <input class="login form-control" type="text" placeholder="Username" id="username">
+                        <input class="password form-control" type="password" placeholder="Password" id="password">
+                        <button id="login" type="button" class="btn-accent" onclick="login()" >Login</button>
+                        <div class="alert" id="loginmsg"></div>
+                    </form>
+
+                    
+                </div>
+            </div>
+        </main>
+
+        <footer class="text-dark text-muted">
+            <div class="container-fluid">
+                <span class="text-reset">Bridger Danby</span>
+            <a
+              class="text-reset"
+              href="https://github.com/bridgerdanby/simon"
+              >GitHub</a>
+            </div> 
+        </footer>
+        <script src="login.js"></script>
+    </body>
+</html>
