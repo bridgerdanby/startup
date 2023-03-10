@@ -1,7 +1,7 @@
 let loggedin = false;
 
 function login() {
-    let btn = document.querySelector("#login");
+    let btn = document.querySelector("#loginbtn");
     let username = document.querySelector('#username').value;
     let password = document.querySelector('#password').value;
     const logininator = new Promise((resolve, reject) => {

@@ -107,14 +107,13 @@
                     </div>
                 </div>
 
-                <div class="game-container">
-                    <div class="game">
+                <div class="game-container" id="games">
+                    <div class="game" id="game01">
                         <div class="game-title"><h4>Simon says</h4></div>
                         <div class="game-description-container">
                             <div class="game-description">
                                 <h5 class="game-description-header">
                                      Description:
-                                    </button>
                                 </h5>
                                 <div>
                                     <div class="game-description-body">
@@ -137,7 +136,7 @@
                                 <p>Est Time: 30 min</p>
                             </div>
                             <div class="game-btn-container">
-                                <button type="button" class="btn-accent">Save</button>
+                                <button id="save" type="button" class="btn-accent" onclick="save(game01.id)" >Save</button>
                                 <button type="button" class="btn-accent">Play Now</button>
                             </div>
                         </div>
@@ -210,7 +209,7 @@
                                 <p>Est Time: 1 hr</p>
                             </div>
                             <div class="game-btn-container">
-                                <button type="button" class="btn-accent">Save</button>
+                                <button type="button" class="btn-accent"  >Save</button>
                                 <button type="button" class="btn-accent">Play Now</button>
                             </div>
                         </div>
@@ -232,5 +231,7 @@
             </div> 
         </footer>
         <script src="login.js"></script>
+        <script src="game.js"></script>
+        
     </body>
 </html>
