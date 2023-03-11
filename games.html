@@ -17,7 +17,7 @@
         />
     </head>
 
-    <body class="text-dark" id="header" onload="loadSaved()">
+    <body class="text-dark" id="header" onload="loadGames()">
         <header class="container-fluid">
             <div class="mynavbar">
                 <span>
@@ -26,9 +26,9 @@
                 <span class="mynav-item">
                     <a class="nav-link" href="profile.html">My Profile</a></span>
                 <span class="mynav-item">
-                    <a class="nav-link active" href="favorites.html">Favorites</a></span>
+                    <a class="nav-link" href="favorites.html" >Favorites</a></span>
                 <span class="mynav-iteme">
-                    <a class="nav-link" href="games.html">Find Games</a></span>
+                    <a class="nav-link active" href="games.html">Find Games</a></span>
                 <form class="form-inline">
                     <input class="Search" type="text" placeholder="Search.." id="searchbar" aria-label="Search">
                     <button class="btn-accent" type="submit">Search</button>
@@ -85,13 +85,37 @@
 
             <div class="main-dashboard">
                 <div class="dashboard-head">
-                    <div class="breadcrumbs">Home > Favorites</div>    
+                    <div class="breadcrumbs">Home > Find Games</div>
+                    
                 </div>
-                <div class="game-container" id="favorites"></div>
+                <div class="game-type-container">
+                    <div class="game-type" id="simple-game">
+                        <h2>Simple Games</h2>
+                        <p>Reccomended for Children age 2-5</p>
+                        <button type="button" id="simple-game" class="btn-accent">Play!</button>
+                    </div>
+                    <div class="game-type" id="moderate-game">
+                        <h2>Moderate Games</h2>
+                        <p>Reccomended for Children age 5-10</p>
+                        <button type="button" id="moderate-game" class="btn-accent">Play!</button>
+                    </div>
+
+                    <div class="game-type" id="advanced-game">
+                        <h2>Advanced Games</h2>
+                        <p>Reccomended for Children age 10+</p>
+                        <button type="button" id="advanced-game" class="btn-accent">Play!</button>
+                    </div>
+                </div>
+
+                <div class="game-container" id="games">
+                    
+                </div>
+
+                
             </div>
         </main>
 
-        <footer class="text-dark text-muted">
+        <footer>
             <div class="container-fluid">
                 <span class="text-reset">Bridger Danby</span>
             <a
@@ -100,7 +124,8 @@
               >GitHub</a>
             </div> 
         </footer>
-
+        <script src="login.js"></script>
         <script src="game.js"></script>
+        
     </body>
 </html>

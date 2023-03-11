@@ -17,105 +17,29 @@
         />
     </head>
 
-    <body class="text-dark" id="header" onload="loadGames()">
+    <body class="text-dark" id="header">
         <header class="container-fluid">
             <div class="mynavbar">
                 <span>
                     <h5 class="myBrand" href="#">FamilyTimeGenie</h5>
                 </span>
-                <span class="mynav-item">
-                    <a class="nav-link" href="profile.html">My Profile</a></span>
-                <span class="mynav-item">
-                    <a class="nav-link" href="favorites.html">Favorites</a></span>
-                <span class="mynav-iteme">
-                    <a class="nav-link active" href="index.html">Find Games</a></span>
-                <form class="form-inline">
-                    <input class="Search" type="text" placeholder="Search.." id="searchbar" aria-label="Search">
-                    <button class="btn-accent" type="submit">Search</button>
-                </form>
-                <span class="nav-item">
-                    <a href="login.html"><button class="btn-accent" id="login-btn">Logout</button></a>
-                </span>
             </div>
         </header>
 
         <main class="bg">
-            <div class="left-sidebar">
-                <div class="filter">Filter by:</div>
-                <div class="filter-category">
-                    Est Time
-                    <table class="table table-striped">
-                        <tbody>
-                            <tr class="filter-item">
-                                <td>
-                                    30 min
-                                </td>
-                                <td>
-                                    <input type="checkbox" value="" id="30min" checked>
-                                </td>
-                            </tr>
-                            <tr class="filter-item">
-                                <td>
-                                    45 min
-                                </td>
-                                <td>
-                                    <input type="checkbox" value="" id="45min" checked>
-                                </td>
-                            </tr>
-                            <tr class="filter-item">
-                                <td>
-                                    1 hr
-                                </td>
-                                <td>
-                                    <input type="checkbox" value="" id="1hr" checked>
-                                </td>
-                            </tr>
-                            <tr class="filter-item">
-                                <td>
-                                    2+ hr
-                                </td>
-                                <td>
-                                    <input type="checkbox" value="" id="2+hr" checked>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <div class="logincontainer">
+                <div class="form-class" id="loginform">
+                    <form class="loginform">
+                        <input class="login form-control" type="text" placeholder="Username" id="username">
+                        <input class="password form-control" type="password" placeholder="Password" id="password">
+                        <button id="loginbtn" type="button" class="btn-accent" onclick="login()" >Login</button>
+                        <div class="alert" id="loginmsg"></div>
+                    </form>
                 </div>
-            </div>
-
-            <div class="main-dashboard">
-                <div class="dashboard-head">
-                    <div class="breadcrumbs">Home > Find Games</div>
-                    
-                </div>
-                <div class="game-type-container">
-                    <div class="game-type" id="simple-game">
-                        <h2>Simple Games</h2>
-                        <p>Reccomended for Children age 2-5</p>
-                        <button type="button" id="simple-game" class="btn-accent">Play!</button>
-                    </div>
-                    <div class="game-type" id="moderate-game">
-                        <h2>Moderate Games</h2>
-                        <p>Reccomended for Children age 5-10</p>
-                        <button type="button" id="moderate-game" class="btn-accent">Play!</button>
-                    </div>
-
-                    <div class="game-type" id="advanced-game">
-                        <h2>Advanced Games</h2>
-                        <p>Reccomended for Children age 10+</p>
-                        <button type="button" id="advanced-game" class="btn-accent">Play!</button>
-                    </div>
-                </div>
-
-                <div class="game-container" id="games">
-                    
-                </div>
-
-                
             </div>
         </main>
 
-        <footer>
+        <footer class="text-dark text-muted">
             <div class="container-fluid">
                 <span class="text-reset">Bridger Danby</span>
             <a
@@ -126,6 +50,5 @@
         </footer>
         <script src="login.js"></script>
         <script src="game.js"></script>
-        
     </body>
 </html>

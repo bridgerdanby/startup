@@ -63,10 +63,15 @@ function loadGames() {
 }
 
 function loadSaved() {
+    console.log("saved");
     let username = localStorage.getItem('userName')
     saved = JSON.parse(localStorage.getItem(username + 'saved'));
     //console.log(saved);
     let gameContainer = document.querySelector("#favorites");
+    //clear
+    while (gameContainer.firstChild) {
+        gameContainer.removeChild(myNode.lastChild);
+      }
     //console.log("hello");
     console.log(saved);
     for (let i = 0; i < saved.length; i++) {
@@ -88,24 +93,36 @@ function save(gameId) {
     console.log("saved" + saved);
     console.log("has: " +games.has(gameId));
     console.log("index: " + saved.indexOf(gameId));
-    let gameContainer = document.querySelector("#favorites");
-    
+    let gameContainer = document.getElementById("favorites");
+
     if (games.has(gameId) && saved.indexOf(gameId) === -1) {
         saved.push(gameId);
         console.log(saved);
-        let game = games.get(saved[saved.indexOf(gameId)]);
-        console.log(gameContainer);
-        addGame(game, game.id, gameContainer, true);
+        //let game = games.get(saved[saved.indexOf(gameId)]);
+        //console.log(gameContainer);
+        //addGame(game, game.id, gameContainer, true);
+
         //console.log(saved);
         let username = localStorage.getItem('userName') + 'saved';
         localStorage.setItem(username, JSON.stringify(saved));
-        //console.log("array: " + JSON.parse(localStorage.getItem(username)));
+        //console.log("array: " + JSON.parse(localStorage.getItem(username)));4
+
         let saveFeedback = document.getElementById("fdbk" + gameId);
         saveFeedback.textContent = "Saved!";
         saveFeedback.classList.add("alert-success");
         console.log("fb");
         setTimeout(function() {
             saveFeedback.classList.remove("alert-success");
+            saveFeedback.textContent = "";
+        }, 1000)
+    }
+    else {
+        let saveFeedback = document.getElementById("fdbk" + gameId);
+        saveFeedback.textContent = "already added";
+        saveFeedback.classList.add("alert-danger");
+        console.log("fb");
+        setTimeout(function() {
+            saveFeedback.classList.remove("alert-danger");
             saveFeedback.textContent = "";
         }, 1000)
     }
@@ -116,6 +133,20 @@ function remove(gameId) {
     let container = document.querySelector("#favorites");
     let child = document.getElementById(gameId);
     console.log(child);
+    
+    let username = localStorage.getItem('userName') + 'saved';
+    localStorage.setItem(username, JSON.stringify(saved));
+    console.log("array: " + JSON.parse(localStorage.getItem(username)));
+
+
+    let saveFeedback = document.getElementById("fdbk" + gameId);
+    saveFeedback.textContent = "Removed";
+    saveFeedback.classList.add("alert-success");
+    setTimeout(function() {
+        saveFeedback.classList.remove("alert-success");
+        saveFeedback.textContent = "";
+    }, 1000)
+
     container.removeChild(child);
 }
 

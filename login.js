@@ -17,7 +17,7 @@ function login() {
         localStorage.setItem("userName", username.value);
         console.log("logging in")
         //take to home
-        document.location.href = "index.html";
+        document.location.href = "games.html";
     })
     .catch((err) => {
         console.log(`Error: ${err}`);
