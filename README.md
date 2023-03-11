@@ -24,6 +24,8 @@ http://3.22.125.215/
 * develop HTML and CSS in parallel when possible
 * build a js file for each page so it isnt as complex and can be tested incrementally
 * dont overcomplicate things, js isnt meant for super complex things and I dont have the time anyways
+* js has multiple ways to do things
+* log is a great tool to fix silent bugs
 
 #### JavaScript to do list
 * login and logout button should change and take you to a different page
