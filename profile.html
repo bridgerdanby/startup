@@ -17,7 +17,7 @@
         />
     </head>
 
-    <body class="text-dark" id="header">
+    <body class="text-dark" id="header" onload="load()">
         <header class="container-fluid">
             <div class="mynavbar">
                 <span>
@@ -50,15 +50,14 @@
                     </div>
                     <div>
                         <label for="example-full-name">Full Name</label>
-
                     </div>
                     <input type="text" class="form-control" id="full_name_input" 
                     placeholder="Bridger Danby" readonly>
                     <label for="example-email">email</label>
                     <input type="email" class="form-control" id="email_input" 
                     placeholder="foo@foobar.com" readonly>
-                    <button type="button" class="btn-accent">Edit</button>
-                    <button type="button" class="btn-accent">Delete Account</button>
+                    <button type="button" class="btn-accent" onclick="edit()" id="editbtn">Edit</button>
+                    <!-- <button type="button hidden" class="btn-accent">Delete Account</button> --!>
                 </div>
             </div>
         </main>
@@ -72,5 +71,6 @@
               >GitHub</a>
             </div> 
         </footer>
+        <script src="profile.js"></script>
     </body>
 </html>
