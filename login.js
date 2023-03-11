@@ -14,6 +14,7 @@ function login() {
         }
         loginmsg.classList.add('alert-success');
         loginmsg.textContent = "loginSucessful";
+        localStorage.setItem("userName", username.value);
         console.log("logging in")
         //take to home
         document.location.href = "index.html";
