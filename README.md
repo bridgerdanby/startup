@@ -27,16 +27,10 @@ http://3.22.125.215/
 * js has multiple ways to do things
 * log is a great tool to fix silent bugs
 
-#### JavaScript to do list
-* login and logout button should change and take you to a different page
-* save games to favorites
-* > change save to remove
-* edit personal information
-  
-##### Lower priority things
-* search bar
-* filters
-* play now should take you somewhere
+#### server to do list
+* games are currently on local storage, move them to server so they are more persistant (will be in database later)
+* add other basic js things like simon has
+* add a way to add games - simple webpage
 
 ##### other notes
 * Domain names - An A record is a straight mapping from a domain name to IP address. A CNAME record maps one domain name to another domain name. This acts as a domain name alias. You would use a CNAME to do things like map byu.com to the same IP address as byu.edu so that either one could be used.
