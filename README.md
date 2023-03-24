@@ -31,6 +31,7 @@ http://3.22.125.215/
 * games are currently on local storage, move them to server so they are more persistant (will be in database later)
 * add other basic js things like simon has
 * add a way to add games - simple webpage
+* objects can be added straight into mongodb
 
 ##### other notes
 * Domain names - An A record is a straight mapping from a domain name to IP address. A CNAME record maps one domain name to another domain name. This acts as a domain name alias. You would use a CNAME to do things like map byu.com to the same IP address as byu.edu so that either one could be used.
