@@ -159,3 +159,7 @@ async - must be defined at top level, makes it work with await
 script things:
   * chmod +x deploy.sh make a script executable
   * ls -la deploy.sh list all elements, even hidden ones in log format
+  
+httpOnly tells the browser to not allow JavaScript running on the browser to read the cookie.
+secure requires HTTPS to be used when sending the cookie back to the server.
+sameSite will only return the cookie to the domain that generated it.
