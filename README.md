@@ -35,6 +35,7 @@ http://3.22.125.215/
   
 ##### use mongo connection string from node 2.2.12 for it to work
 ##### websocket - notification when a new game is added by a user
+##### required installs ws mongodb express cookie-parser uuid bcrypt
 
 ##### other notes
 * Domain names - An A record is a straight mapping from a domain name to IP address. A CNAME record maps one domain name to another domain name. This acts as a domain name alias. You would use a CNAME to do things like map byu.com to the same IP address as byu.edu so that either one could be used.
