@@ -27,16 +27,15 @@ http://3.22.125.215/
 * js has multiple ways to do things
 * log is a great tool to fix silent bugs
 
-#### JavaScript to do list
-* login and logout button should change and take you to a different page
-* save games to favorites
-* > change save to remove
-* edit personal information
+#### server to do list
+* games are currently on local storage, move them to server so they are more persistant (will be in database later)
+* add other basic js things like simon has
+* add a way to add games - simple webpage
+* objects can be added straight into mongodb
   
-##### Lower priority things
-* search bar
-* filters
-* play now should take you somewhere
+##### use mongo connection string from node 2.2.12 for it to work
+##### websocket - notification when a new game is added by a user
+##### required installs ws mongodb express cookie-parser uuid bcrypt
 
 ##### other notes
 * Domain names - An A record is a straight mapping from a domain name to IP address. A CNAME record maps one domain name to another domain name. This acts as a domain name alias. You would use a CNAME to do things like map byu.com to the same IP address as byu.edu so that either one could be used.
@@ -162,3 +161,7 @@ async - must be defined at top level, makes it work with await
 script things:
   * chmod +x deploy.sh make a script executable
   * ls -la deploy.sh list all elements, even hidden ones in log format
+  
+httpOnly tells the browser to not allow JavaScript running on the browser to read the cookie.
+secure requires HTTPS to be used when sending the cookie back to the server.
+sameSite will only return the cookie to the domain that generated it.
