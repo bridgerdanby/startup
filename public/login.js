@@ -1,64 +1,50 @@
 let loggedin = false;
 
-`/api/auth/login`
-
-
-
 function login() {
     const logininator = new Promise((resolve, reject) => {
-      authenticate(username, password, resolve, reject);
+      authenticate(`/api/auth/login`, resolve, reject);
     });
     logininator.then((result) => {
-        loginmsg = document.querySelector("#loginmsg");
-        if (loginmsg.classList.contains('alert-danger')) {
-            loginmsg.classList.remove('alert-danger');
-        }
-        loginmsg.classList.add('alert-success');
-        loginmsg.textContent = "loginSucessful";
-        localStorage.setItem("userName", username.value);
-        console.log("logging in")
-        //take to home
-        document.location.href = "games.html";
+        success("Logging in")
     })
     .catch((err) => {
-        console.log(`Error: ${err}`);
-        loginmsg = document.querySelector("#loginmsg");
-        if (loginmsg.classList.contains('alert-success')) {
-            loginmsg.classList.remove('alert-success');
-        }
-        loginmsg.classList.add('alert-danger');
-        loginmsg.textContent = "please try again";
+        failure("please try again")
     })
     .finally(() => reset());
 }
 
 function register() {
   const logininator = new Promise((resolve, reject) => {
-    authenticate(username, password, resolve, reject);
+    authenticate(`/api/auth/path`, resolve, reject);
   });
   logininator.then((result) => {
-      loginmsg = document.querySelector("#loginmsg");
-      if (loginmsg.classList.contains('alert-danger')) {
-          loginmsg.classList.remove('alert-danger');
-      }
-      loginmsg.classList.add('alert-success');
-      loginmsg.textContent = "loginSucessful";
-      localStorage.setItem("userName", username.value);
-      console.log("logging in")
-      //take to home
-      document.location.href = "games.html";
+      success("registering");
   })
   .catch((err) => {
-      console.log(`Error: ${err}`);
-      loginmsg = document.querySelector("#loginmsg");
-      if (loginmsg.classList.contains('alert-success')) {
-          loginmsg.classList.remove('alert-success');
-      }
-      loginmsg.classList.add('alert-danger');
-      loginmsg.textContent = "please try again";
+      failure("unable to register")
   })
   .finally(() => reset());
+}
 
+function success(message) {
+  loginmsg = document.querySelector("#loginmsg");
+  if (loginmsg.classList.contains('alert-danger')) {
+      loginmsg.classList.remove('alert-danger');
+  }
+  loginmsg.classList.add('alert-success');
+  loginmsg.textContent = message;
+  localStorage.setItem("userName", username.value);
+  document.location.href = "games.html";
+}
+
+function failure(message) {
+  console.log(`Error: ${err}`);
+  loginmsg = document.querySelector("#loginmsg");
+  if (loginmsg.classList.contains('alert-success')) {
+      loginmsg.classList.remove('alert-success');
+  }
+  loginmsg.classList.add('alert-danger');
+  loginmsg.textContent = message;
 }
 
 async function authenticate(path, resolve, reject) {
@@ -90,29 +76,3 @@ function reset() {
   document.querySelector('#password').value = "";
 }
 
-async function createUser() {
-  loginOrCreate(`/api/auth/create`);
-}
-
-async function loginOrCreate(endpoint) {
-  const userName = document.querySelector('#userName')?.value;
-  const password = document.querySelector('#userPassword')?.value;
-  const response = await fetch(endpoint, {
-    method: 'post',
-    body: JSON.stringify({ email: userName, password: password }),
-    headers: {
-      'Content-type': 'application/json; charset=UTF-8',
-    },
-  });
-  const body = await response.json();
-
-  if (response?.status === 200) {
-    localStorage.setItem('userName', userName);
-    window.location.href = 'play.html';
-  } else {
-    const modalEl = document.querySelector('#msgModal');
-    modalEl.querySelector('.modal-body').textContent = `⚠ Error: ${body.msg}`;
-    const msgModal = new bootstrap.Modal(modalEl, {});
-    msgModal.show();
-  }
-}
