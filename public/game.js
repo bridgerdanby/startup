@@ -1,4 +1,4 @@
-let games = new Map();
+/*let games = new Map();
 
 games.set('0', { 
     name: "Simon says",
@@ -40,30 +40,37 @@ games.set('2', {
     at a quicker pace.",
     level: "Advanced",
     time: "45 min"
-})
+})*/
 
 
-function loadGames() {
+async function loadGames() {
+    //use endpoint
+
     let gameContainer = document.querySelector("#games");
     let i = 0;
     console.log("hello")
+    //load games
+    const response = await fetch("/api/games")
+    const games = await response.json()
     games.forEach((game) => {
         addGame(game, game.id, gameContainer, false);
     })
     console.log(games);
-    let saved = [];
-    let username = localStorage.getItem('userName') + 'saved';
-    console.log(localStorage.getItem(username))
-    if(localStorage.getItem(username) === null) {
-        localStorage.setItem(username, JSON.stringify(saved));
-        console.log("put: " + saved);
-}
+
 }
 
 function loadSaved() {
     console.log("saved");
-    let username = localStorage.getItem('userName')  + 'saved';
-    let saved = JSON.parse(localStorage.getItem(username));
+    //use endpoint
+    //const response = await fetch("/api/games")
+    //const scores = await response.json()
+    //let username = localStorage.getItem('userName')  + 'saved';
+    //let saved = JSON.parse(localStorage.getItem(username));
+
+    //get username
+
+    //get saved
+
     let gameContainer = document.querySelector("#favorites");
     //clear
     while (gameContainer.firstChild) {
@@ -78,17 +85,25 @@ function loadSaved() {
 }
 
 function save(gameId) {
-    let username = localStorage.getItem('userName') + 'saved';
-    let saved = JSON.parse(localStorage.getItem(username));
+
+    //get user
+
+    /*let username = localStorage.getItem('userName') + 'saved';
+    let saved = JSON.parse(localStorage.getItem(username));*/
     console.log("saved " + saved);
 
     let gameContainer = document.getElementById("favorites");
+
+    //get games
+
+    //get saved
 
     if (games.has(gameId) && saved.indexOf(gameId) === -1) {
         saved.push(gameId);
         console.log(saved);
 
-        localStorage.setItem(username, JSON.stringify(saved));
+        //localStorage.setItem(username, JSON.stringify(saved));
+        //add saved
 
         let saveFeedback = document.getElementById("fdbk" + gameId);
         saveFeedback.textContent = "Saved!";
@@ -112,14 +127,18 @@ function save(gameId) {
 }
 
 function remove(gameId) {
-    let username = localStorage.getItem('userName') + 'saved';
-    let saved = JSON.parse(localStorage.getItem(username));
-    saved.splice(saved.indexOf(gameId), 1);
+    //get user
+    /*let username = localStorage.getItem('userName') + 'saved';
+    let saved = JSON.parse(localStorage.getItem(username));*/
+    //saved.splice(saved.indexOf(gameId), 1);
+
+    //remove favorite
+
     let container = document.querySelector("#favorites");
     let child = document.getElementById(gameId);
     console.log(child);
     
-    localStorage.setItem(username, JSON.stringify(saved));
+    //localStorage.setItem(username, JSON.stringify(saved));
     //console.log("array: " + JSON.parse(localStorage.getItem(username)));
 
 
