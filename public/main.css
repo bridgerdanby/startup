@@ -7,7 +7,7 @@ body {
 }
 
 header {
-    flex: 0 80px;
+    flex: 0 60px;
     background-color: rgb(6, 176, 14);
 }
 
@@ -24,7 +24,7 @@ header {
 .mynavbar {
     display: flex;
     flex-direction: row;
-    height: 30px;
+    height: 60px;
     gap: 10px;
     flex-wrap: nowrap;
 }
@@ -69,14 +69,12 @@ menu .nav-item {
     width: 30vw;
 }
 
-
-
 main {
     flex: 1 calc(100vh - 110px);
     display: grid;
     grid-template-columns: 1fr 3fr;
     gap: 20px;
-    background-color:  rgb(6, 176, 14, .1);
+    background-color:  rgb(250, 255, 255);
 }
 
 .game-type {
@@ -84,7 +82,7 @@ main {
     border: rgb(176, 6, 168) 5px solid;
     border-radius: 5px;
     padding: 6px;
-    background-color: rgba(176, 6, 168, .1);
+    background-color:  rgb(250, 255, 255);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -110,7 +108,7 @@ main {
     border: rgb(176, 6, 168) 5px solid;
     border-radius: 5px;
     padding: 6px;
-    background-color: rgba(176, 6, 168, .1);
+    background-color:  rgb(250, 255, 255);
 }
 
 form-check-input {
@@ -155,7 +153,7 @@ form-check-input {
     border: rgb(176, 6, 168) 5px solid;
     border-radius: 5px;
     padding: 6px;
-    background-color: rgba(176, 6, 168, .1);
+    background-color:  rgb(250, 255, 255);
 }
 
 .game-description-container {
@@ -185,6 +183,7 @@ footer a {
 
 .profilecontainer {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100vw;
@@ -195,12 +194,55 @@ footer a {
     border: rgb(176, 6, 168) 5px solid;
     border-radius: 5px;
     padding: 6px;
-    background-color: rgba(176, 6, 168, .1);
+    background-color:  rgb(250, 255, 255);
+    height: 80%;
+}
+
+.newgamecontainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    
+}
+
+#newgameform {
+    border: rgb(176, 6, 168) 5px solid;
+    border-radius: 5px;
+    padding: 6px;
+    background-color:  rgb(250, 255, 255);
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+#radios {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+}
+
+.newgameradio {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+
+#quote {
+    width: 100vw;
+    height: 10%;
+    margin-top: auto;
 }
 
 #profilepic {
-    max-height: 50vh;
-    max-width: 50vw;
+    max-height: 30vh;
+    max-width: 30vw;
 }
 
 div.logincontainer {
