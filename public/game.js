@@ -44,8 +44,6 @@ games.set('2', {
 
 
 async function loadGames() {
-    //use endpoint
-
     let gameContainer = document.querySelector("#games");
     let i = 0;
     console.log("hello")
@@ -53,59 +51,77 @@ async function loadGames() {
     const response = await fetch("/api/games")
     const games = await response.json()
     games.forEach((game) => {
-        addGame(game, game.id, gameContainer, false);
+        addGame(game, game._id, gameContainer, false);
     })
     console.log(games);
 
 }
 
-function loadSaved() {
+async function loadSaved() {
+
     console.log("saved");
+
+    let userName = localStorage.getItem("userName");
+    console.log(userName);
+
     //use endpoint
-    //const response = await fetch("/api/games")
-    //const scores = await response.json()
+    let url = "/api/favorites/" + userName;
+    console.log(url);
+    const response = await fetch(url);
+
+    console.log(response);
+    console.log(response.body);
+    const favorites = await response.json()
+
+    console.log(favorites);
     //let username = localStorage.getItem('userName')  + 'saved';
     //let saved = JSON.parse(localStorage.getItem(username));
-
-    //get username
-
-    //get saved
 
     let gameContainer = document.querySelector("#favorites");
     //clear
     while (gameContainer.firstChild) {
         gameContainer.removeChild(myNode.lastChild);
       }
-    console.log(saved);
-    for (let i = 0; i < saved.length; i++) {
-        let game = games.get(saved[i]);
+    console.log(favorites);
+    for (let i = 0; i < favorites.length; i++) {
+        let game = favorites[i].game
         console.log(game);
-        addGame(game, game.id, gameContainer, true);
+        addGame(game, game._id, gameContainer, true);
     }
 }
 
-function save(gameId) {
-
+async function save(game) {
     //get user
-
+    let userName = localStorage.getItem("userName");
+    console.log("userName: " + userName);
     /*let username = localStorage.getItem('userName') + 'saved';
-    let saved = JSON.parse(localStorage.getItem(username));*/
-    console.log("saved " + saved);
+    let saved = JSON.parse(localStorage.getItem(username));
+    console.log("saved " + saved);*/
 
     let gameContainer = document.getElementById("favorites");
 
+    console.log("gameContainer " + gameContainer);
+
     //get games
+    let response = await fetch("/api/games")
+    const games = await response.json()
+
+    console.log(games);
 
     //get saved
+    response = await fetch(`/api/favorite/` + userName, {
+        method: 'post',
+        body: JSON.stringify({ game }),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+    });
+    const favorites = await response.json()
 
-    if (games.has(gameId) && saved.indexOf(gameId) === -1) {
-        saved.push(gameId);
-        console.log(saved);
+    //console.log(favorites);
 
-        //localStorage.setItem(username, JSON.stringify(saved));
-        //add saved
-
-        let saveFeedback = document.getElementById("fdbk" + gameId);
+    if (response?.status === 200) {
+        let saveFeedback = document.getElementById("fdbk" + game._id);
         saveFeedback.textContent = "Saved!";
         saveFeedback.classList.add("alert-success");
         console.log("fb");
@@ -113,8 +129,8 @@ function save(gameId) {
             saveFeedback.classList.remove("alert-success");
             saveFeedback.textContent = "";
         }, 1000)
-    }
-    else {
+      }
+      else {
         let saveFeedback = document.getElementById("fdbk" + gameId);
         saveFeedback.textContent = "already added";
         saveFeedback.classList.add("alert-danger");
@@ -123,7 +139,7 @@ function save(gameId) {
             saveFeedback.classList.remove("alert-danger");
             saveFeedback.textContent = "";
         }, 1000)
-    }
+      }
 }
 
 function remove(gameId) {
@@ -154,7 +170,10 @@ function remove(gameId) {
 }
 
 function addGame(game, id, container, saved) {
-    //console.log("hello");
+    //console.log(game);
+    //console.log(id);
+    //console.log(container);
+    //console.log(saved);
     let g = document.createElement('div');
     let titlediv = document.createElement('div');
     let title = document.createElement('h4');
@@ -187,11 +206,11 @@ function addGame(game, id, container, saved) {
 
     //console.log(g)
     if (!saved) {
-        saveBtn.onclick = () => save(id);
+        saveBtn.onclick = () => save(game);
         saveBtn.textContent = "Save";
     } else {
         saveBtn.textContent = "Remove";
-        saveBtn.onclick = () => remove(id);
+        saveBtn.onclick = () => remove(game);
     }
     saveBtn.id = "save" + id;
     saveBtn.type = "button";

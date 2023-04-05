@@ -3,7 +3,10 @@ const bcrypt = require('bcrypt');
 const express = require('express');
 const app = express();
 const DB = require('./database.js');
-const { PeerProxy } = require('./peerProxy.js');
+
+const authCookieName = 'token';
+
+//const { PeerProxy } = require('./peerProxy.js');
 // The service port. In production the front-end code is statically hosted by the service on the same port.
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
 
@@ -22,6 +25,7 @@ app.use(`/api`, apiRouter);
 
 // CreateAuth token for a new user
 apiRouter.post('/auth/create', async (req, res) => {
+    console.log("create");
     if (await DB.getUser(req.body.email)) {
       res.status(409).send({ msg: 'Existing user' });
     } else {
@@ -29,7 +33,7 @@ apiRouter.post('/auth/create', async (req, res) => {
   
       // Set the cookie
       setAuthCookie(res, user.token);
-  
+      console.log("sent")
       res.send({
         id: user._id,
       });
@@ -38,10 +42,14 @@ apiRouter.post('/auth/create', async (req, res) => {
   
   // GetAuth token for the provided credentials
   apiRouter.post('/auth/login', async (req, res) => {
+    console.log("logging in")
     const user = await DB.getUser(req.body.email);
+
+    console.log(user);
     if (user) {
       if (await bcrypt.compare(req.body.password, user.password)) {
         setAuthCookie(res, user.token);
+        console.log("sending")
         res.send({ id: user._id });
         return;
       }
@@ -94,8 +102,10 @@ secureApiRouter.post('/game', async (req, res) => {
 });
 
 //get favorites endpoint
-secureApiRouter.get('/favorites/:user', async (req, res) => {
-    const favorites = await DB.getFavorites(req.params.user);
+secureApiRouter.get('/favorites/:username', async (req, res) => {
+    console.log(req.params.username);
+    const favorites = await DB.getFavorites(req.params.username);
+    console.log(favorites);
     res.send(favorites);
 })
 
@@ -139,8 +149,8 @@ app.use(function (err, req, res, next) {
   }
   
   const httpService = app.listen(port, () => {
-    console.log(`Listening on port ${port}`);
+    //console.log(`Listening on port ${port}`);
   });
 
   //websocket
-  new PeerProxy(httpService);
+  //new PeerProxy(httpService);

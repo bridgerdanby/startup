@@ -18,6 +18,7 @@ const scoreCollection = client.db('familytimegenie').collection('games');
 const favoriteCollection =  client.db('familytimegenie').collection('favorites')
 
 function getUser(email) {
+    console.log("user");
   return userCollection.findOne({ email: email });
 }
 
@@ -60,17 +61,22 @@ function getGamesByTime(time) {
 }
 
 function getFavorites(user) {
-    const query = { "user": {user}};
-    const cursor = scoreCollection.find(query, options);
+    const query = { user };
+    console.log("query: ");
+    console.log(query);
+    const cursor = scoreCollection.find(query);
+    console.log("favorites ");
+    console.log(cursor.toArray())
     return cursor.toArray();
 }
 
 async function addFavorite(_user, _game) {
     const fav = {
         user: _user,
-        game: _game
+        _game
     }
     favoriteCollection.insertOne(fav);
+    return true;
 }
 
 function removeFavorite(user) {

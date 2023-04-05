@@ -1,27 +1,35 @@
 let loggedin = false;
 
 function login() {
-    const logininator = new Promise((resolve, reject) => {
-      authenticate(`/api/auth/login`, resolve, reject);
-    });
-    logininator.then((result) => {
-        success("Logging in")
-    })
-    .catch((err) => {
-        failure("please try again")
-    })
-    .finally(() => reset());
+  loginmsg = document.querySelector("#loginmsg");
+  loginmsg.classList.add('alert-success');
+  loginmsg.textContent = "logging in...";
+  const logininator = new Promise((resolve, reject) => {
+    authenticate(`/api/auth/login`, resolve, reject);
+  });
+  logininator.then((result) => {
+      success("Logging in")
+  })
+  .catch((err) => {
+      failure("please try again", err)
+  })
+  .finally(() => reset());
 }
 
 function register() {
+  oginmsg = document.querySelector("#loginmsg");
+  loginmsg.classList.add('alert-success');
+  loginmsg.textContent = "registering...";
+  console.log("Register");
   const logininator = new Promise((resolve, reject) => {
-    authenticate(`/api/auth/path`, resolve, reject);
+    authenticate(`/api/auth/create`, resolve, reject);
   });
   logininator.then((result) => {
-      success("registering");
+    console.log("success");
+    success("registering");
   })
   .catch((err) => {
-      failure("unable to register")
+      failure("unable to register", err)
   })
   .finally(() => reset());
 }
@@ -37,8 +45,8 @@ function success(message) {
   document.location.href = "games.html";
 }
 
-function failure(message) {
-  console.log(`Error: ${err}`);
+function failure(message, err) {
+  //console.log(`Error: ${err}`);
   loginmsg = document.querySelector("#loginmsg");
   if (loginmsg.classList.contains('alert-success')) {
       loginmsg.classList.remove('alert-success');
@@ -48,9 +56,11 @@ function failure(message) {
 }
 
 async function authenticate(path, resolve, reject) {
+  console.log("authenticate");
   let btn = document.querySelector("#loginbtn");
   let userName = document.querySelector('#username').value;
   let password = document.querySelector('#password').value;
+  console.log(path);
   const response = await fetch(path, {
     method: 'post',
     body: JSON.stringify({ email: userName, password: password }),
@@ -58,6 +68,7 @@ async function authenticate(path, resolve, reject) {
       'Content-type': 'application/json; charset=UTF-8',
     },
   });
+  console.log("responded");
 
   const body = await response.json();
 
@@ -72,6 +83,7 @@ async function authenticate(path, resolve, reject) {
 }
 
 function reset() {
+  console.log("reset");
   document.querySelector('#username').value = "";
   document.querySelector('#password').value = "";
 }
