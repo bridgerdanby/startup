@@ -28,6 +28,20 @@ function save() {
     editbtn.onclick = () => edit();
 }
 
+function displayPicture(data) {
+    const containerEl = document.querySelector("#profilepic");
+  
+    const width = 300; //containerEl.offsetWidth;
+    const height = 200; //containerEl.offsetHeight;
+
+    console.log(`https://picsum.photos/id/${data[0].id}/${width}/${height}?grayscale`);
+  
+    const imgUrl = `https://picsum.photos/id/${data[0].id}/${width}/${height}?grayscale`;
+    const imgEl = document.createElement("img");
+    imgEl.setAttribute("src", imgUrl);
+    containerEl.appendChild(imgEl);
+  }
+
 function displayQuote(data) {
     const containerEl = document.querySelector("#quote");
   
@@ -43,6 +57,8 @@ function displayQuote(data) {
     containerEl.appendChild(authorEl);
 }
 
+
+
 function callService(url, displayCallback) {
 fetch(url)
     .then((response) => response.json())
@@ -51,4 +67,9 @@ fetch(url)
     });
 }
 
+const random = Math.floor(Math.random() * 1000);
+callService(
+    `https://picsum.photos/v2/list?page=${random}&limit=1`,
+    displayPicture
+  );
 callService("https://api.quotable.io/random", displayQuote);
