@@ -70,10 +70,13 @@ function getFavorites(user) {
     return cursor.toArray();
 }
 
-async function addFavorite(_user, _game) {
+async function addFavorite(_user, game) {
     const fav = {
         user: _user,
-        _game
+        name: game.name,
+        description: game.description,
+        time: game.time,
+        level: game.level
     }
     favoriteCollection.insertOne(fav);
     return true;

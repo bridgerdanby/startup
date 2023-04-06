@@ -3,10 +3,10 @@ const bcrypt = require('bcrypt');
 const express = require('express');
 const app = express();
 const DB = require('./database.js');
+const { PeerProxy } = require('./peerProxy.js');
 
 const authCookieName = 'token';
 
-//const { PeerProxy } = require('./peerProxy.js');
 // The service port. In production the front-end code is statically hosted by the service on the same port.
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
 
@@ -153,4 +153,4 @@ app.use(function (err, req, res, next) {
   });
 
   //websocket
-  //new PeerProxy(httpService);
+  new PeerProxy(httpService);
