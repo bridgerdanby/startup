@@ -105,7 +105,7 @@ secureApiRouter.post('/game', async (req, res) => {
 secureApiRouter.get('/favorites/:username', async (req, res) => {
     console.log(req.params.username);
     const favorites = await DB.getFavorites(req.params.username);
-    console.log(favorites);
+    //console.log(favorites);
     res.send(favorites);
 })
 
@@ -117,8 +117,10 @@ secureApiRouter.post('/favorite/:user', async (req, res) => {
 });
 
 //remove favorite
-secureApiRouter.post('/unfavorite/:user', async (req, res) => {
-    await DB.removeFavorite(req.params.user, req.body);
+secureApiRouter.post('/unfavorite', async (req, res) => {
+    console.log("unfavorite");
+    console.log(req.body);
+    await DB.removeFavorite(req.body.user, req.body.game);
     const favorites = await DB.getFavorites(req.params.user);
     res.send(favorites);
 });

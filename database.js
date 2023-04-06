@@ -14,7 +14,7 @@ const url = `mongodb://${userName}:${password}@${hostname}`;
 
 const client = new MongoClient(url);
 const userCollection = client.db('familytimegenie').collection('user');
-const scoreCollection = client.db('familytimegenie').collection('games');
+const gameCollection = client.db('familytimegenie').collection('games');
 const favoriteCollection =  client.db('familytimegenie').collection('favorites')
 
 function getUser(email) {
@@ -48,7 +48,7 @@ function getGames() {
   const query = {};
   //get the games
   const options = { };
-  const cursor = scoreCollection.find(query, options);
+  const cursor = gameCollection.find(query, options);
   return cursor.toArray();
 }
 
@@ -56,17 +56,19 @@ function getGamesByTime(time) {
   const query = { "time": {time}};
   //get the games
   const options = { };
-  const cursor = scoreCollection.find(query, options);
+  const cursor = gameCollection.find(query, options);
   return cursor.toArray();
 }
 
-function getFavorites(user) {
-    const query = { user };
-    console.log("query: ");
-    console.log(query);
-    const cursor = scoreCollection.find(query);
-    console.log("favorites ");
-    console.log(cursor.toArray())
+function getFavorites(_user) {
+    const query = { user: _user };
+    const options = { };
+    //console.log("query: ");
+    //console.log(query);
+    const cursor = favoriteCollection.find(query, options);
+    //console.log("favorites ");
+    //console.log(cursor.toArray())
+
     return cursor.toArray();
 }
 
@@ -82,8 +84,13 @@ async function addFavorite(_user, game) {
     return true;
 }
 
-function removeFavorite(user) {
+function removeFavorite(_user, _name) {
     //remove from db
+    console.log("remove");
+    console.log(_user, _name);
+    const user = favoriteCollection.findOne( { user: _user, name:_name } ).user;
+    favoriteCollection.deleteOne({ user: _user, name:_name });
+    return user;
 }
 
 module.exports = {

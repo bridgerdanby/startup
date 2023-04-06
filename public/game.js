@@ -60,15 +60,15 @@ async function loadGames() {
 async function loadSaved() {
     console.log("saved");
     let userName = localStorage.getItem("userName");
-    console.log(userName);
+    //console.log(userName);
 
     //use endpoint
     let url = "/api/favorites/" + userName;
     console.log(url);
     const response = await fetch(url);
 
-    console.log(response);
-    console.log(response.body);
+    //console.log(response);
+    //console.log(response.body);
     const favorites = await response.json()
     console.log(favorites);
 
@@ -77,11 +77,17 @@ async function loadSaved() {
     while (gameContainer.firstChild) {
         gameContainer.removeChild(myNode.lastChild);
       }
-    console.log(favorites);
+    //console.log(favorites);
     for (let i = 0; i < favorites.length; i++) {
-        let game = favorites[i].game
+        let game = {
+            
+            name: favorites[i].name,
+            description: favorites[i].description,
+            time: favorites[i].time,
+            level: favorites[i].level,
+        }
         console.log(game);
-        addGameToList(game, game._id, gameContainer, true);
+        addGameToList(game, favorites[i]._id, gameContainer, true);
     }
 }
 
@@ -141,29 +147,48 @@ async function save(game) {
       }
 }
 
-function remove(gameId) {
-    //get user
-    /*let username = localStorage.getItem('userName') + 'saved';
-    let saved = JSON.parse(localStorage.getItem(username));*/
-    //saved.splice(saved.indexOf(gameId), 1);
+async function remove(gameId, game) {
 
     //remove favorite
-
+    console.log(gameId);
     let container = document.querySelector("#favorites");
     let child = document.getElementById(gameId);
     console.log(child);
-    
-    //localStorage.setItem(username, JSON.stringify(saved));
-    //console.log("array: " + JSON.parse(localStorage.getItem(username)));
 
+    let response = await fetch(`/api/unfavorite`, {
+        method: 'POST',
+        body: JSON.stringify({
+            user: localStorage.getItem("userName"),
+            game: game.name,
+        }),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+          },
+      });
+    //const favorites = await response.json()
 
-    let saveFeedback = document.getElementById("fdbk" + gameId);
-    saveFeedback.textContent = "Removed";
-    saveFeedback.classList.add("alert-success");
-    setTimeout(function() {
-        saveFeedback.classList.remove("alert-success");
-        saveFeedback.textContent = "";
-    }, 1000)
+    //console.log(favorites);
+
+    if (response?.status === 200) {
+        let saveFeedback = document.getElementById("fdbk" + gameId);
+        saveFeedback.textContent = "Removed!";
+        saveFeedback.classList.add("alert-success");
+        console.log("fb");
+        setTimeout(function() {
+            saveFeedback.classList.remove("alert-success");
+            saveFeedback.textContent = "";
+        }, 1000)
+      }
+      else {
+        let saveFeedback = document.getElementById("fdbk" + gameId);
+        saveFeedback.textContent = "failed";
+        saveFeedback.classList.add("alert-danger");
+        console.log("fb");
+        setTimeout(function() {
+            saveFeedback.classList.remove("alert-danger");
+            saveFeedback.textContent = "";
+        }, 1000)
+      }
 
     container.removeChild(child);
 }
@@ -209,7 +234,7 @@ function addGameToList(game, id, container, saved) {
         saveBtn.textContent = "Save";
     } else {
         saveBtn.textContent = "Remove";
-        saveBtn.onclick = () => remove(game);
+        saveBtn.onclick = () => remove(id, game);
     }
     saveBtn.id = "save" + id;
     saveBtn.type = "button";
